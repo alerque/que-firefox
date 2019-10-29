@@ -1,0 +1,33 @@
+sanitise tridactyllocal tridactylsync
+
+colorscheme shydactyl
+guiset_quiet tabstoolbar none
+
+bind j scrollline 1
+bind k scrollline -1
+bind J scrollline 15
+bind K scrollline -15
+
+unbind A
+
+" GitHub pull request checkout command to clipboard (only works if you're a collaborator or above)
+bind yp composite js document.getElementById("clone-help-step-1").textContent.replace("git checkout -b", "git checkout -B").replace("git pull ", "git fetch ") + "git reset --hard " + document.getElementById("clone-help-step-1").textContent.split(" ")[3].replace("-","/") | yank
+
+" Git{Hub,Lab} git clone via SSH yank
+bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
+
+" Only hint search results on Google and DDG
+bindurl www.google.com f hint -Jc .rc > .r > a
+bindurl www.google.com F hint -Jbc .rc>.r>a
+bindurl ^https://duckduckgo.com f hint -Jc [class=result__a]
+bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
+
+" Make yy use canonical / short links on the 5 websites that support them
+bind yy clipboard yankshort
+
+command myfixamo jsb tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""'))
+myfixama
+
+autocmd DocStart ^http(s?)://www.amazon.com js tri.excmds.urlmodify("-t", "www", "smile")
+
+" vim: set filetype=vim:
