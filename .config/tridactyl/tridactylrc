@@ -1,4 +1,4 @@
-sanitise tridactyllocal tridactylsync
+" sanitise tridactyllocal tridactylsync
 
 guiset_quiet tabstoolbar none
 guiset_quiet tabs always
@@ -6,53 +6,177 @@ guiset_quiet navbar autohide
 guiset_quiet hoverlink left
 guiset_quiet statuspanel right
 
-colorscheme shydactyl
+" General Settings
+set theme shydactyl
+set configversion 1.8
+js tri.config.set("update", {"lastchecktime": 1577184973347})
+js tri.config.set("update", {"nag": true})
+js tri.config.set("update", {"nagwait": 7})
+js tri.config.set("update", {"lastnaggedversion": "1.14.0"})
+js tri.config.set("update", {"checkintervalsecs": 86400})
 
+" Binds
 bind j scrollline 1
 bind k scrollline -1
 bind J scrollline 15
 bind K scrollline -15
-
 unbind A
+bind yp composite js document.getElementById("clone-help-step-1").textContent.replace("git checkout -b", "git checkout -B").replace("git pull ", "git fetch ") + "git reset --hard " + document.getElementById("clone-help-step-1").textContent.split(" ")[3].replace("-","/") | yank
+bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
+bind yy clipboard yankshort
+bind <A-p> pin
+bind <A-m> mute toggle
+bind <F1> help
+bind o fillcmdline open
+bind O current_url open
+bind w fillcmdline winopen
+bind W current_url winopen
+bind t fillcmdline tabopen
+bind ]] followpage next
+bind [[ followpage prev
+bind [c urlincrement -1
+bind ]c urlincrement 1
+bind <C-x> urlincrement -1
+bind <C-a> urlincrement 1
+bind T current_url tabopen
+bind ys clipboard yankshort
+bind yc clipboard yankcanon
+bind ym clipboard yankmd
+bind yt clipboard yanktitle
+bind gh home
+bind gH home true
+bind p clipboard open
+bind P clipboard tabopen
+bind <C-e> scrollline 10
+bind <C-y> scrollline -10
+bind h scrollpx -50
+bind l scrollpx 50
+bind G scrollto 100
+bind gg scrollto 0
+bind <C-u> scrollpage -0.5
+bind <C-d> scrollpage 0.5
+bind <C-f> scrollpage 1
+bind <C-b> scrollpage -1
+bind $ scrollto 100 x
+bind ^ scrollto 0 x
+bind <C-6> tab #
+bind <C-^> tab #
+bind H back
+bind L forward
+bind <C-o> jumpprev
+bind <C-i> jumpnext
+bind d tabclose
+bind D composite tabprev; tabclose #
+bind gx0 tabclosealltoleft
+bind gx$ tabclosealltoright
+bind << tabmove -1
+bind >> tabmove +1
+bind u undo
+bind U undo window
+bind r reload
+bind R reloadhard
+bind x stop
+bind gi focusinput -l
+bind g? rot13
+bind g; changelistjump -1
+bind gt tabnext_gt
+bind gT tabprev
+bind g^ tabfirst
+bind g0 tabfirst
+bind g$ tablast
+bind gr reader
+bind gu urlparent
+bind gU urlroot
+bind gf viewsource
+bind : fillcmdline_notrail
+bind s fillcmdline open search
+bind S fillcmdline tabopen search
+bind M gobble 1 quickmark
+bind B fillcmdline taball
+bind b fillcmdline tab
+bind ZZ qall
+bind f hint
+bind F hint -b
+bind gF hint -qb
+bind ;i hint -i
+bind ;b hint -b
+bind ;o hint
+bind ;I hint -I
+bind ;k hint -k
+bind ;y hint -y
+bind ;p hint -p
+bind ;P hint -P
+bind ;r hint -r
+bind ;s hint -s
+bind ;S hint -S
+bind ;a hint -a
+bind ;A hint -A
+bind ;; hint -;
+bind ;# hint -#
+bind ;v hint -W mpvsafe
+bind ;w hint -w
+bind ;t hint -W tabopen
+bind ;O hint -W fillcmdline_notrail open 
+bind ;W hint -W fillcmdline_notrail winopen 
+bind ;T hint -W fillcmdline_notrail tabopen 
+bind ;z hint -z
+bind ;m composite hint -pipe img src | js -p tri.excmds.open('images.google.com/searchbyimage?image_url=' + JS_ARG)
+bind ;M composite hint -pipe img src | jsb -p tri.excmds.tabopen('images.google.com/searchbyimage?image_url=' + JS_ARG)
+bind ;gi hint -qi
+bind ;gI hint -qI
+bind ;gk hint -qk
+bind ;gy hint -qy
+bind ;gp hint -qp
+bind ;gP hint -qP
+bind ;gr hint -qr
+bind ;gs hint -qs
+bind ;gS hint -qS
+bind ;ga hint -qa
+bind ;gA hint -qA
+bind ;g; hint -q;
+bind ;g# hint -q#
+bind ;gv hint -qW mpvsafe
+bind ;gw hint -qw
+bind ;gb hint -qb
+bind ;gF hint -qb
+bind ;gf hint -q
+bind <S-Insert> mode ignore
+bind <AC-Escape> mode ignore
+bind <AC-`> mode ignore
+bind <S-Escape> mode ignore
+bind <Escape> composite mode normal ; hidecmdline
+bind <C-[> composite mode normal ; hidecmdline
+bind a current_url bmark
+bind zi zoom 0.1 true
+bind zo zoom -0.1 true
+bind zm zoom 0.5 true
+bind zr zoom -0.5 true
+bind zM zoom 0.5 true
+bind zR zoom -0.5 true
+bind zz zoom 1
+bind zI zoom 3
+bind zO zoom 0.3
+bind . repeat
+bind <AS-ArrowUp><AS-ArrowUp><AS-ArrowDown><AS-ArrowDown><AS-ArrowLeft><AS-ArrowRight><AS-ArrowLeft><AS-ArrowRight>ba open https://www.youtube.com/watch?v=M3iOROuTuMA
 
+" Allow Ctrl-a to select all in the commandline
+unbind --mode=ex <C-a>
+
+" Allow Ctrl-c to copy in the commandline
+unbind --mode=ex <C-c>
+
+" Handy multiwindow/multitasking binds
+bind gd tabdetach
+bind gD composite tabduplicate | tabdetach
+
+" Pinboard mark
 bind m open javascript:if(document.getSelection){s=document.getSelection();}else{s='';};document.location='https://pinboard.in/add?next=same&url='+encodeURIComponent(location.href)+'&description='+encodeURIComponent(s)+'&title='+encodeURIComponent(document.title)
 
-" " Comment toggler for Reddit and Hacker News
-" bind ;c hint -c [class*="expand"],[class="togg"]
-
-" GitHub pull request checkout command to clipboard (only works if you're a collaborator or above)
-bind yp composite js document.getElementById("clone-help-step-1").textContent.replace("git checkout -b", "git checkout -B").replace("git pull ", "git fetch ") + "git reset --hard " + document.getElementById("clone-help-step-1").textContent.split(" ")[3].replace("-","/") | yank
-
-" Git{Hub,Lab} git clone via SSH yank
-bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
-
-" " As above but execute it and open terminal in folder
-" bind ,g js let uri = document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git"); tri.native.run("cd ~/projects; git clone " + uri + "; cd \"$(basename \"" + uri + "\" .git)\"; st")
-
-" " I like wikiwand but I don't like the way it changes URLs
-" bindurl wikiwand.com yy composite js document.location.href.replace("wikiwand.com/en","wikipedia.org/wiki") | clipboard yank
-
-" " Make gu take you back to subreddit from comments
-" bindurl reddit.com gu urlparent 4
-
-" Only hint search results on Google and DDG
+" Only hint search results
 bindurl www.google.com f hint -Jc .rc > .r > a
 bindurl www.google.com F hint -Jbc .rc>.r>a
 bindurl ^https://duckduckgo.com f hint -Jc [class=result__a]
 bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
-
-" " Allow Ctrl-a to select all in the commandline
-" unbind --mode=ex <C-a>
-
-" " Allow Ctrl-c to copy in the commandline
-" unbind --mode=ex <C-c>
-
-" " Handy multiwindow/multitasking binds
-" bind gd tabdetach
-" bind gD composite tabduplicate | tabdetach
-
-" Make yy use canonical / short links on the 5 websites that support them
-bind yy clipboard yankshort
 
 " " Stupid workaround to let hint -; be used with composite which steals semi-colons
 " command hint_focus hint -;
@@ -60,39 +184,89 @@ bind yy clipboard yankshort
 " " Open right click menu on links
 " bind ;C composite hint_focus; !s xdotool key Menu
 
-" "
-" " Misc settings
-" "
+" Subconfig Settings
+js tri.config.set("subconfigs", {"www.google.com": {"nmaps":{"f":"hint -Jc .rc > .r > a","F":"hint -Jbc .rc>.r>a"},"followpagepatterns":{"next":"Next","prev":"Previous"}}})
+js tri.config.set("subconfigs", {"^https://duckduckgo.com": {"nmaps":{"f":"hint -Jc [class=result__a]","F":"hint -Jbc [class=result__a]"}}})
 
-" " set editorcmd to suckless terminal, or use the defaults on other platforms
-" js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "st vim" : "auto"; tri.config.set("editorcmd", editorcmd)})
-
-" Sane hinting mode
-" set hintfiltermode vimperator
-" set hintnames numeric
-
-" " Defaults to 300ms but I'm a 'move fast and close the wrong tabs' kinda chap
-" set hintdelay 100
+" Aliases
+alias myfixamo jsb tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""'))
+command alias command
+alias au autocmd
+alias aucon autocontain
+alias audel autocmddelete
+alias audelete autocmddelete
+alias b tab
+alias clsh clearsearchhighlight
+alias nohlsearch clearsearchhighlight
+alias noh clearsearchhighlight
+alias o open
+alias w winopen
+alias t tabopen
+alias tabnew tabopen
+alias tabm tabmove
+alias tabo tabonly
+alias tn tabnext_gt
+alias bn tabnext_gt
+alias tnext tabnext_gt
+alias bnext tabnext_gt
+alias tp tabprev
+alias tN tabprev
+alias bp tabprev
+alias bN tabprev
+alias tprev tabprev
+alias bprev tabprev
+alias tabfirst tab 1
+alias tablast tab 0
+alias bfirst tabfirst
+alias blast tablast
+alias tfirst tabfirst
+alias tlast tablast
+alias buffer tab
+alias bufferall taball
+alias bd tabclose
+alias bdelete tabclose
+alias quit tabclose
+alias q tabclose
+alias qa qall
+alias sanitize sanitise
+alias tutorial tutor
+alias h help
+alias unmute mute unmute
+alias authors credits
+alias openwith hint -W
+alias ! exclaim
+alias !s exclaim_quiet
+alias containerremove containerdelete
+alias colours colourscheme
+alias colorscheme colourscheme
+alias colors colourscheme
+alias man help
+alias !js fillcmdline_tmp 3000 !js is deprecated. Please use js instead
+alias !jsb fillcmdline_tmp 3000 !jsb is deprecated. Please use jsb instead
+alias get_current_url js document.location.href
+alias current_url composite get_current_url | fillcmdline_notrail 
+alias stop js window.stop()
+alias zo zoom
+alias installnative nativeinstall
+alias nativeupdate updatenative
+alias mkt mktridactylrc
+alias mkt! mktridactylrc -f
+alias mktridactylrc! mktridactylrc -f
+alias mpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('mpv ' + url))
+alias exto extoptions
+alias extpreferences extoptions
+alias extp extpreferences
+alias prefset setpref
+alias prefremove removepref
 
 " Add helper commands that Mozillians think make Firefox irredeemably
 " insecure. For details, read the comment at the top of this file.
-command myfixamo jsb tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""'))
-
-" Make Tridactyl work on more sites at the expense of some security. For
-" details, read the comment at the top of this file.
+" command myfixamo jsb tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""'))
 myfixamo
 
-" " Make quickmarks for the sane Tridactyl issue view
-" quickmark t https://github.com/tridactyl/tridactyl/issues?utf8=%E2%9C%93&q=sort%3Aupdated-desc+
-
-" "
-" " URL redirects
-" "
-
-" " New reddit is bad
-" autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
-
+" Autocmds
 autocmd DocStart ^http(s?)://www.amazon.com js tri.excmds.urlmodify("-t", "www", "smile")
+autocmd DocLoad ^https://github.com/tridactyl/tridactyl/issues/new$ issue
+autocmd TriStart .* source_quiet
 
-" This will have to do until someone writes us a nice syntax file :)
 " vim: set filetype=vim:
