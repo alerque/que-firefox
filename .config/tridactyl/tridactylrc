@@ -1,10 +1,11 @@
 " sanitise tridactyllocal tridactylsync
 
-guiset_quiet tabstoolbar none
+guiset_quiet navbar always
 guiset_quiet tabs always
-guiset_quiet navbar autohide
+guiset_quiet tabstoolbar show
+guiset_quiet gui none
 guiset_quiet hoverlink left
-guiset_quiet statuspanel right
+guiset_quiet statuspanel left
 
 " General Settings
 set theme shydactyl
