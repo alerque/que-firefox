@@ -10,6 +10,7 @@ guiset_quiet statuspanel left
 " General Settings
 set theme shydactyl
 set configversion 1.8
+set searchengine duckduckgo
 js tri.config.set("update", {"lastchecktime": 1577184973347})
 js tri.config.set("update", {"nag": true})
 js tri.config.set("update", {"nagwait": 7})
