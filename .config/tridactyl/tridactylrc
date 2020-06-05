@@ -266,6 +266,12 @@ alias prefremove removepref
 " command myfixamo jsb tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""'))
 myfixamo
 
+" Setup theme
+
+setpref toolkit.legacyUserProfileCustomizations.stylesheets true
+setpref browser.tabs.drawInTitlebar true
+setpref browser.uidensity 0
+
 " Autocmds
 autocmd DocLoad ^https://github.com/tridactyl/tridactyl/issues/new$ issue
 autocmd TriStart .* source_quiet
