@@ -1,0 +1,6 @@
+*
+!/.config
+!/.config/tridactyl
+!/.config/tridactyl/tridactylrc
+!/.gitignore.d
+!/.gitignore.d/que-firefox
