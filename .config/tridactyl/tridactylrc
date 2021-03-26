@@ -80,7 +80,7 @@ bind <C-a> urlincrement 1
 bind <C-b> scrollpage -1
 bind <C-d> scrollpage 0.5
 bind <C-e> scrollline 10
-bind <C-f> scrollpage 1
+unbind <C-f>
 bind <C-i> jumpnext
 bind <C-o> jumpprev
 bind <C-u> scrollpage -0.5
