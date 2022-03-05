@@ -244,6 +244,10 @@ alias unmute mute unmute
 alias w winopen
 alias zo zoom
 
+" Agressively remove config stuck in many of my profiles that caused redirect loops
+autocmddelete DocStart ^http(s?)://www.amazon.com/
+autocmddelete DocStart ^http(s?)://www.amazon.com
+
 " Autocmds
 autocmd DocLoad ^https://github.com/tridactyl/tridactyl/issues/new$ issue
 autocmd DocStart mail.google.com/mail mode ignore
