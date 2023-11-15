@@ -250,9 +250,10 @@ autocmddelete DocStart ^http(s?)://www.amazon.com
 
 " Autocmds
 autocmd DocLoad ^https://github.com/tridactyl/tridactyl/issues/new$ issue
-autocmd DocStart mail.google.com/mail mode ignore
-autocmd DocStart undefined mode ignore
 autocmd TriStart .* source_quiet
+
+autocmd DocStart mail.google.com/mail mode ignore
+autocmd DocStart docs.google.com/document mode ignore
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: set filetype=tridactyl
