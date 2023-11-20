@@ -173,8 +173,12 @@ bind zm zoom 0.5 true
 bind zo zoom -0.1 true
 bind zr zoom -0.5 true
 bind zz zoom 1
+
 bindurl ^https://duckduckgo.com f hint -Jc [class=result__a]
 bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
+
+" bindurl ^https://console.hetzner.cloud/console --mode=ignore : filldmdline_notrail
+blacklistadd console.hetzner.cloud/console
 
 " Aliases
 alias ! exclaim
