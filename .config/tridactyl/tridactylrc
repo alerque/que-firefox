@@ -1,3 +1,5 @@
+sanitise tridactyllocal tridactylsync
+
 " General Settings
 set update.checkintervalsecs 86400
 set configversion 2.0
