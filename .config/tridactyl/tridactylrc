@@ -7,6 +7,7 @@ set allowautofocus false
 set modeindicator false
 set searchengine duckduckgo
 set theme shydactyl
+set newtab about:blank
 
 " Binds
 bind --mode=ex <ArrowDown> ex.next_history
