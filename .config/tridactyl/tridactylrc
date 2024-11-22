@@ -1,8 +1,9 @@
 sanitise tridactyllocal tridactylsync
 
 " General Settings
-set update.checkintervalsecs 86400
 set configversion 2.0
+set update.checkintervalsecs 86400
+set update.lastchecktime 1732280593990
 set allowautofocus false
 set modeindicator false
 set searchengine duckduckgo
@@ -179,8 +180,8 @@ bind zz zoom 1
 
 bindurl ^https://duckduckgo.com f hint -Jc [class=result__a]
 bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
-
 " bindurl ^https://console.hetzner.cloud/console --mode=ignore : filldmdline_notrail
+
 blacklistadd console.hetzner.cloud/console
 
 " Aliases
@@ -259,11 +260,11 @@ autocmddelete DocStart ^http(s?)://www.amazon.com/
 autocmddelete DocStart ^http(s?)://www.amazon.com
 
 " Autocmds
-autocmd DocLoad ^https://github.com/tridactyl/tridactyl/issues/new$ issue
 autocmd TriStart .* source_quiet
-
-autocmd DocStart mail.google.com/mail mode ignore
+autocmd DocLoad ^https://github.com/tridactyl/tridactyl/issues/new$ issue
+autocmd DocStart console.hetzner.cloud/console mode ignore
 autocmd DocStart docs.google.com/document mode ignore
+autocmd DocStart mail.google.com/mail mode ignore
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: set filetype=tridactyl
