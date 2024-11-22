@@ -9,6 +9,9 @@ set searchengine duckduckgo
 set theme shydactyl
 set newtab about:blank
 
+" Subconfig Settings
+seturl grep.app allowautofocus true
+
 " Binds
 bind --mode=ex <ArrowDown> ex.next_history
 bind --mode=ex <ArrowUp> ex.prev_history
