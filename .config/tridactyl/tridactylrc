@@ -184,9 +184,6 @@ bind zz zoom 1
 
 bindurl ^https://duckduckgo.com f hint -Jc [class=result__a]
 bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
-" bindurl ^https://console.hetzner.cloud/console --mode=ignore : filldmdline_notrail
-
-blacklistadd console.hetzner.cloud/console
 
 " Aliases
 alias ! exclaim
@@ -266,9 +263,12 @@ autocmddelete DocStart ^http(s?)://www.amazon.com
 " Autocmds
 autocmd TriStart .* source_quiet
 autocmd DocLoad ^https://github.com/tridactyl/tridactyl/issues/new$ issue
+
 autocmd DocStart console.hetzner.cloud/console mode ignore
 autocmd DocStart docs.google.com/document mode ignore
 autocmd DocStart mail.google.com/mail mode ignore
+autocmd DocStart mermaid.live mode ignore
+autocmd DocStart mermaidchart.com/live mode ignore
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: set filetype=tridactyl
